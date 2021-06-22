@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meme maker</title>
+    <link rel="stylesheet" href="./dist/style.css" />
+    <script src="./app.js" defer></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"
+      defer
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"
+      defer
+    ></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="controls">
+        <div class="imgCtrl ctrlSec">
+          <p class="secTitle">Image</p>
+
+          <div class="pos">
+            <p class="title">Position</p>
+            <div class="slider">
+              <label for="posX">X</label>
+              <input type="range" name="posX" value="0" class="posX" oninput="editImage()" min="-100" max="100"/>
+              <label for="posXVal" class="posXval">0%</label>
+            </div>
+
+            <div class="slider">
+              <label for="posY">Y</label>
+              <input type="range" name="posY" value="0" class="posY" oninput="editImage()" min="-100" max="100"/>
+              <label for="posYVal" class="posYval">0%</label>
+            </div>
+          </div>
+
+          <div class="sec rot">
+            <p class="title">Rotation</p>
+            <div class="slider">
+              <input type="range" name="rot" value="0" class="rotSlid" oninput="editImage()" min="-360" max="360"/>
+              <label for="rotVal" class="rotVal">0%</label>
+            </div>
+          </div>
+
+          <div class="sec scl">
+            <p class="title">Scale</p>
+            <div class="slider">
+              <input type="range" name="scl" value="0" class="sclSlid" oninput="editImage()" max="100" />
+              <label for="sclVal" class="sclVal">0%</label>
+            </div>
+          </div>
+
+          <div class="sec bg">
+            <p class="title">Background</p>
+            <div class="slider">
+              <input type="color" name="bg" value="0" class="col" oninput="editImage()"/>
+            </div>
+          </div>
+        </div>
+
+        <div class="btnCtrl ctrlSec">
+          <input type="file" name="image" class="fileInput" accept="image/*" />
+          <button onclick="addTextSection()">Add Text</button>
+          <button onclick="uploadBtn.click()">Upload Template</button>
+          <button onclick="downloadImage()">Download Meme</button>
+        </div>
+      </div>
+
+      <div class="result">
+        <div class="image">
+          <img src="./meme.jpg" alt="meme" class="meme" />
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
