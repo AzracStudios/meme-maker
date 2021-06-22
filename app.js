@@ -152,6 +152,29 @@ function addTextSection() {
   sclval.className = "sclTxtVal " + currentText;
   scl.appendChild(sclval);
 
+  // Rotation
+  let rot = document.createElement("div");
+  rot.className = "rot sec";
+
+  // Title
+  let rotTitle = document.createElement("p");
+  rotTitle.innerText = "Rotation";
+  rot.appendChild(rotTitle);
+
+  // Slider
+  let rotInput = document.createElement("input");
+  rotInput.type = "range";
+  rotInput.className = "rotTxt scl";
+  rotInput.value = "0";
+  rotInput.min = "-360";
+  rotInput.max = "360";
+  rot.appendChild(rotInput);
+
+  let rotval = document.createElement("label");
+  rotval.innerText = "0%";
+  rotval.className = "rotTxtVal " + currentText;
+  rot.appendChild(rotval);
+
   // Color
   let bg = document.createElement("div");
   bg.className = "sec bg";
@@ -175,6 +198,7 @@ function addTextSection() {
 
   parent.appendChild(pos);
   parent.appendChild(scl);
+  parent.appendChild(rot);
   parent.appendChild(bg);
   parent.appendChild(close);
 
@@ -291,6 +315,26 @@ function updateText(e) {
     for (const val of document.querySelectorAll(".sclTxtVal")) {
       if (val.classList[1] == parent.classList[2]) {
         val.innerText = input.value + "px";
+      }
+    }
+  }
+
+  if (e.target.type == "range" && e.target.className == "rotTxt scl") {
+    let input = e.target;
+    let iP = input.parentElement;
+    let parent = iP.parentElement;
+
+    let textImg = document.querySelectorAll(".memeText");
+
+    for (const texts of textImg) {
+      if (texts.classList[1] == parent.classList[2]) {
+        texts.style.transform = `rotate(${input.value}deg)`
+      }
+    }
+
+    for (const val of document.querySelectorAll(".rotTxtVal")) {
+      if (val.classList[1] == parent.classList[2]) {
+        val.innerText = input.value + "deg";
       }
     }
   }
